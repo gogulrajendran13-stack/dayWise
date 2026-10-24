@@ -1,0 +1,1917 @@
+
+/* =========================================================
+   dayWise DASHBOARD CSS
+   File: src/main/webapp/css/dashboard.css
+
+   SECTION 01: Theme colors
+   SECTION 02: Global styles
+   SECTION 03: Main layout
+   SECTION 04: Sidebar and logo
+   SECTION 05: Sidebar navigation
+   SECTION 06: Sign-out button
+   SECTION 07: Main header
+   SECTION 08: Breadcrumb
+   SECTION 09: Search bar and focus style
+   SECTION 10: Notifications
+   SECTION 11: Profile and mobile menu
+   SECTION 12: Dashboard content
+   SECTION 13: Greeting, date and task button
+   SECTION 14: Today at a glance
+   SECTION 15: Section headings
+   SECTION 16: Feature cards
+   SECTION 17: Quick-access cards
+   SECTION 18: Weekly chart
+   SECTION 19: Productivity summary
+   SECTION 20: Footer
+   SECTION 21: Mobile overlay
+   SECTION 22: Tablet layout
+   SECTION 23: Mobile layout
+   SECTION 24: Accessibility
+   ========================================================= */
+
+
+/* =========================================================
+   SECTION 01: THEME COLORS
+   Change shared colors and sidebar width here.
+   ========================================================= */
+:root {
+    --white: #ffffff;
+
+    /* Sidebar background */
+    --sidebar-bg: #f0ebff;
+
+    /* Lavender theme */
+    --lavender: #8b78e6;
+    --lavender-dark: #6b55c5;
+    --lavender-soft: #e9e2ff;
+
+    /* Pastel accent colors */
+    --green: #65b99a;
+    --green-soft: #e4f5ed;
+
+    --orange: #f2a66d;
+    --orange-soft: #fff0e3;
+
+    --yellow: #edc95f;
+    --yellow-soft: #fff7d9;
+
+    --coral: #e98f9f;
+    --coral-soft: #fce9ed;
+
+    --blue: #7897e8;
+    --blue-soft: #eaf0ff;
+
+    /* Text and borders */
+    --text: #302b49;
+    --text-dark: #292343;
+    --muted: #79738f;
+    --border: #e8e3f1;
+
+    /* Shadows */
+    --shadow: 0 5px 18px rgba(65, 47, 119, 0.055);
+    --shadow-hover: 0 10px 25px rgba(65, 47, 119, 0.10);
+
+    /* Sidebar width */
+    --sidebar-width: 246px;
+}
+
+
+/* =========================================================
+   SECTION 02: GLOBAL STYLES
+   Change default font, page background and base text here.
+   ========================================================= */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--white);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--text-dark);
+    line-height: 1.35;
+}
+
+::selection {
+    background: var(--lavender-soft);
+    color: var(--text-dark);
+}
+
+
+/* =========================================================
+   SECTION 03: MAIN APPLICATION LAYOUT
+   Holds the sidebar and dashboard content.
+   The footer is outside this layout.
+   ========================================================= */
+.app-layout {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--white);
+}
+
+
+/* =========================================================
+   SECTION 04: SIDEBAR AND LOGO
+   Change sidebar background, width, padding and logo size here.
+   ========================================================= */
+.sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    flex: 0 0 var(--sidebar-width);
+    flex-direction: column;
+
+    width: var(--sidebar-width);
+    height: 100vh;
+    padding: 15px 13px 12px;
+
+    overflow: hidden;
+
+    background: var(--sidebar-bg);
+    border-right: 1px solid #e3dafb;
+}
+
+/* Logo row */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-height: 56px;
+    margin: 0 7px 19px;
+
+    color: var(--text-dark);
+}
+
+/* Logo checkmark box */
+.brand-icon {
+    display: inline-flex;
+    flex: 0 0 43px;
+    align-items: center;
+    justify-content: center;
+
+    width: 43px;
+    height: 43px;
+
+    border-radius: 14px;
+    background: linear-gradient(135deg, #a393f2, #7964d0);
+    box-shadow: 0 5px 13px rgba(137, 118, 223, 0.18);
+
+    color: var(--white);
+    font-size: 27px;
+    font-weight: 800;
+}
+
+/* dayWise brand text */
+.brand-name {
+    color: var(--text-dark);
+    font-size: 23px;
+    font-weight: 850;
+    letter-spacing: -0.8px;
+}
+
+.brand-name span {
+    color: var(--lavender-dark);
+}
+
+
+/* =========================================================
+   SECTION 05: SIDEBAR NAVIGATION
+   Change menu labels, spacing, font size and active colors.
+   ========================================================= */
+.sidebar-navigation {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Workspace, Productivity and Account labels */
+.nav-label {
+    flex-shrink: 0;
+    margin: 8px 10px;
+
+    color: #80749f;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+/* Sidebar navigation list */
+.nav-list {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    gap: 5px;
+
+    padding: 0;
+    margin: 0 0 16px;
+
+    list-style: none;
+}
+
+.nav-list li {
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Each navigation link */
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 11px;
+
+    border: 1px solid transparent;
+    border-radius: 11px;
+
+    color: #51496f;
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.4;
+
+    transition: background 0.18s ease, color 0.18s ease;
+}
+
+/* Sidebar icons */
+.nav-icon {
+    display: inline-flex;
+    flex: 0 0 21px;
+    align-items: center;
+    justify-content: center;
+
+    width: 21px;
+
+    color: #6f6199;
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* Menu hover */
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--lavender-dark);
+}
+
+/* Active navigation item */
+.nav-link.active {
+    background: var(--lavender);
+    box-shadow: 0 5px 12px rgba(121, 100, 209, 0.18);
+    color: var(--white);
+}
+
+.nav-link.active .nav-icon {
+    color: var(--white);
+}
+
+
+/* =========================================================
+   SECTION 06: SIGN-OUT BUTTON
+   Change the button at the bottom of the sidebar here.
+   ========================================================= */
+.sidebar-bottom {
+    flex-shrink: 0;
+    padding-top: 10px;
+    margin-top: auto;
+    border-top: 1px solid #ded4f8;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 12px;
+
+    border: 1px solid #ded3ff;
+    border-radius: 11px;
+
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--lavender-dark);
+
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.logout-button:hover {
+    background: var(--white);
+}
+
+
+/* =========================================================
+   SECTION 07: MAIN HEADER
+   Change header height, spacing and border here.
+   ========================================================= */
+.main-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 100vh;
+
+    background: var(--white);
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    min-height: 72px;
+    padding: 12px 30px;
+
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar-left,
+.topbar-right {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.topbar-left {
+    gap: 12px;
+}
+
+.topbar-right {
+    justify-content: flex-end;
+    gap: 13px;
+}
+
+
+/* =========================================================
+   SECTION 08: BREADCRUMB
+   Styles the Workspace / Dashboard text.
+   ========================================================= */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.breadcrumb-separator {
+    color: #b2a9c8;
+}
+
+.breadcrumb strong {
+    color: var(--text-dark);
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   SECTION 09: SEARCH BAR AND FOCUS STYLE
+   Change search size and border here.
+   Removes the blue rectangular focus outline.
+   ========================================================= */
+
+/* =========================================================
+   SECTION 09: SEARCH BAR AND FOCUS STYLE
+   Remove the blue focus box from the search bar and input.
+   ========================================================= */
+
+.header-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: min(280px, 28vw);
+    min-width: 155px;
+    height: 39px;
+    padding: 0 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: var(--white);
+    color: var(--muted);
+
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none;
+    appearance: none;
+
+    transition: border-color 0.18s ease;
+}
+
+.header-search:focus-within,
+.header-search:focus,
+.header-search:focus-visible,
+.header-search:active {
+    border-color: var(--border) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.header-search .search-symbol {
+    flex-shrink: 0;
+    color: #8a80a7;
+    font-size: 17px;
+}
+
+.header-search input,
+.header-search input:focus,
+.header-search input:focus-visible,
+.header-search input:active {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-dark);
+
+    font: inherit;
+    font-size: 13px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.header-search input::-webkit-search-decoration,
+.header-search input::-webkit-search-cancel-button,
+.header-search input::-webkit-search-results-button,
+.header-search input::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
+.header-search input::placeholder {
+    color: #9690a8;
+}
+
+
+/* =========================================================
+   SECTION 10: NOTIFICATIONS
+   Change notification icon and indicator dot here.
+   ========================================================= */
+.notification-button {
+    position: relative;
+
+    display: inline-flex;
+    flex: 0 0 39px;
+    align-items: center;
+    justify-content: center;
+
+    width: 39px;
+    height: 39px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    background: var(--white);
+    color: #665b8a;
+    font-size: 19px;
+}
+
+.notification-button:hover {
+    background: var(--lavender-soft);
+}
+
+/* Notification indicator */
+.notification-dot {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+
+    width: 7px;
+    height: 7px;
+
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    background: var(--coral);
+}
+
+
+/* =========================================================
+   SECTION 11: PROFILE AND MOBILE MENU
+   Change the avatar and profile text here.
+   ========================================================= */
+.profile-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    border-radius: 12px;
+}
+
+/* User avatar */
+.avatar {
+    display: inline-flex;
+    flex: 0 0 40px;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    background: linear-gradient(135deg, #b4a4f5, #816cda);
+
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+/* User name and workspace label */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    line-height: 1.45;
+}
+
+.profile-details strong {
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.profile-details > span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* Hidden on desktop; displayed on mobile */
+.mobile-menu-button {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    background: var(--white);
+    color: var(--text-dark);
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   SECTION 12: DASHBOARD CONTENT
+   Change the overall main-area padding here.
+   ========================================================= */
+.dashboard-content {
+    width: 100%;
+    max-width: 1800px;
+    padding: 25px 30px 34px;
+    margin: 0 auto;
+    background: var(--white);
+}
+
+
+/* =========================================================
+   SECTION 13: GREETING, DATE AND CREATE-TASK BUTTON
+   Greeting stays on the left.
+   Tagline sits below the greeting.
+   Date appears immediately before the task button.
+   ========================================================= */
+
+/* =========================================================
+   SECTION 13: GREETING, DATE AND CREATE-TASK BUTTON
+   ========================================================= */
+
+.welcome-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    margin-bottom: 24px;
+}
+
+.welcome-copy {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* Main greeting: slightly larger than before */
+.welcome-row h1 {
+    margin-bottom: 4px;
+    color: var(--text-dark);
+    font-size: clamp(30px, 2.5vw, 36px);
+    font-weight: 850;
+    letter-spacing: -1px;
+    line-height: 1.3;
+}
+
+.welcome-row h1 > span:first-of-type {
+    color: var(--lavender-dark);
+}
+
+.greeting-sparkle {
+    display: inline-block;
+    color: var(--orange);
+    font-size: 0.8em;
+}
+
+/* Subtitle under the greeting */
+.welcome-subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+/* Date first, Create New Task button immediately after it */
+.welcome-actions {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 20px;
+    white-space: nowrap;
+}
+
+.welcome-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.today-date {
+    margin: 0;
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.date-caption {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.primary-button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 44px;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 12px;
+    background: var(--lavender);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.primary-button:hover {
+    background: var(--lavender-dark);
+}
+
+/* =========================================================
+   SECTION 14: TODAY AT A GLANCE
+   Change the overview panel and its three shortcuts here.
+   ========================================================= */
+.today-overview {
+    display: grid;
+    grid-template-columns: minmax(230px, 1.15fr) repeat(3, minmax(0, 1fr));
+    align-items: center;
+    gap: 0;
+
+    padding: 17px;
+    margin-bottom: 28px;
+
+    border: 1px solid #e5ddff;
+    border-radius: 20px;
+    background: #fbfaff;
+}
+
+/* Overview title */
+.today-intro {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 4px 15px 4px 0;
+}
+
+/* Overview star icon */
+.today-icon {
+    display: inline-flex;
+    flex: 0 0 43px;
+    align-items: center;
+    justify-content: center;
+
+    width: 43px;
+    height: 43px;
+
+    border-radius: 13px;
+    background: var(--lavender);
+    color: var(--white);
+    font-size: 21px;
+}
+
+.today-intro > div {
+    min-width: 0;
+}
+
+/* Small overview label */
+.mini-label {
+    margin-bottom: 4px;
+    color: var(--lavender-dark);
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: 1.1px;
+}
+
+/* Overview heading */
+.today-intro h2 {
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 850;
+}
+
+/* Overview shortcuts */
+.today-metric {
+    display: grid;
+    grid-template-columns: 37px minmax(0, 1fr) 13px;
+    align-items: center;
+    gap: 8px;
+
+    min-width: 0;
+    min-height: 47px;
+    padding: 4px 11px;
+
+    border-left: 1px solid #e3dcf5;
+}
+
+.today-metric > div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* Overview icon boxes */
+.metric-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 37px;
+    height: 37px;
+
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+/* Tasks: lavender */
+.tasks-metric {
+    background: var(--lavender-soft);
+    color: var(--lavender-dark);
+}
+
+/* Calendar: coral */
+.focus-metric {
+    background: var(--coral-soft);
+    color: #bd6479;
+}
+
+/* Focus: green */
+.goals-metric {
+    background: var(--green-soft);
+    color: #348b6b;
+}
+
+/* Overview text */
+.today-metric strong {
+    margin-bottom: 1px;
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 850;
+}
+
+.today-metric > div > span {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   SECTION 15: SECTION HEADINGS
+   The small uppercase labels have been removed from the JSP.
+   This section styles only the actual section headings.
+   ========================================================= */
+.dashboard-section {
+    margin-top: 27px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 13px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    color: var(--text-dark);
+    font-size: 21px;
+    font-weight: 850;
+    letter-spacing: -0.4px;
+}
+
+.text-link {
+    flex-shrink: 0;
+    color: var(--lavender-dark);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   SECTION 16: CALENDAR, ANALYTICS AND FOCUS MODE CARDS
+   Change the card design and pastel accent circles here.
+   ========================================================= */
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.quick-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 145px;
+    padding: 18px;
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Pastel decorative circle */
+.quick-card::after {
+    position: absolute;
+    right: -25px;
+    bottom: -38px;
+
+    width: 95px;
+    height: 95px;
+
+    border-radius: 50%;
+    background: var(--card-accent, var(--lavender-soft));
+    opacity: 0.65;
+    content: "";
+    pointer-events: none;
+}
+
+/* Calendar card: green */
+.quick-card-tasks {
+    --card-accent: var(--green-soft);
+}
+
+/* Analytics card: orange */
+.quick-card-projects {
+    --card-accent: var(--orange-soft);
+}
+
+/* Focus Mode card: yellow */
+.quick-card-goals {
+    --card-accent: var(--yellow-soft);
+}
+
+/* Card hover */
+.quick-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Main feature icon */
+.quick-icon {
+    position: relative;
+    z-index: 1;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+
+    border-radius: 13px;
+    background: var(--lavender-soft);
+    color: var(--lavender-dark);
+    font-size: 20px;
+}
+
+/* Calendar icon */
+.quick-card-tasks .quick-icon {
+    background: var(--green-soft);
+    color: #348b6b;
+}
+
+/* Analytics icon */
+.quick-card-projects .quick-icon {
+    background: var(--orange-soft);
+    color: #bd7134;
+}
+
+/* Focus Mode icon */
+.quick-card-goals .quick-icon {
+    background: var(--yellow-soft);
+    color: #98751b;
+}
+
+/* Feature card heading */
+.quick-card-heading {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.quick-card-heading strong {
+    color: var(--text-dark);
+    font-size: 15px;
+    font-weight: 850;
+}
+
+.quick-card-heading > span {
+    color: var(--lavender-dark);
+    font-size: 15px;
+}
+
+/* Feature card description */
+.quick-card-description {
+    position: relative;
+    z-index: 1;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   SECTION 17: QUICK-ACCESS CARDS
+   Change Projects, Recurring Tasks, Reminders and Categories.
+   ========================================================= */
+.quick-access-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.access-card {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 13px;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 4px 9px;
+
+    min-width: 0;
+    min-height: 82px;
+    padding: 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--white);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.access-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Quick-access icon */
+.access-icon {
+    display: inline-flex;
+    grid-row: 1 / 3;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 12px;
+    background: var(--lavender-soft);
+    color: var(--lavender-dark);
+    font-size: 18px;
+}
+
+/* Recurring Tasks icon: orange */
+.access-card:nth-child(2) .access-icon {
+    background: var(--orange-soft);
+    color: #bd7134;
+}
+
+/* Reminders icon: green */
+.access-card:nth-child(3) .access-icon {
+    background: var(--green-soft);
+    color: #348b6b;
+}
+
+/* Categories icon: yellow */
+.access-card:nth-child(4) .access-icon {
+    background: var(--yellow-soft);
+    color: #98751b;
+}
+
+/* Quick-access title */
+.access-card > strong {
+    min-width: 0;
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 850;
+    line-height: 1.4;
+}
+
+/* Quick-access description */
+.access-card > span:nth-of-type(2) {
+    min-width: 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+/* Quick-access arrow */
+.access-arrow {
+    grid-column: 3;
+    grid-row: 1;
+    color: var(--lavender-dark);
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   SECTION 18: WEEKLY ACTIVITY BAR CHART
+   Bars are sample visuals until real task data is connected.
+   ========================================================= */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(270px, 0.85fr);
+    align-items: stretch;
+    gap: 16px;
+}
+
+/* Chart panel */
+.chart-card {
+    min-width: 0;
+    min-height: 320px;
+    padding: 20px;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+}
+
+/* Chart title row */
+.chart-card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.chart-card-heading h3 {
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 850;
+}
+
+/* Weekly view badge */
+.chart-badge {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+    background: var(--lavender-soft);
+    color: var(--lavender-dark);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* Chart labels and plotting area */
+.chart-placeholder {
+    display: grid;
+    grid-template-columns: 37px minmax(0, 1fr);
+    gap: 9px;
+    min-width: 0;
+}
+
+/* High, Medium and Low labels */
+.chart-y-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px 0 24px;
+
+    color: #9189a9;
+    font-size: 10px;
+    text-align: right;
+}
+
+/* Chart drawing area */
+.chart-area {
+    position: relative;
+    height: 190px;
+    min-width: 0;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Chart guide lines */
+.chart-grid-line {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 1px;
+    border-top: 1px dashed #e7e0f5;
+    pointer-events: none;
+}
+
+.line-one { top: 8%; }
+.line-two { top: 40%; }
+.line-three { top: 73%; }
+
+/* Seven columns for seven days */
+.chart-bars {
+    position: absolute;
+    inset: 0;
+
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 9px;
+}
+
+/* Clickable day column */
+.chart-column {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+
+    min-width: 0;
+    height: 100%;
+    padding: 0 2px;
+
+    border: 0;
+    border-radius: 8px 8px 0 0;
+
+    background: transparent;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* Day label */
+.chart-column > span:last-child {
+    display: block;
+    min-height: 21px;
+    font-size: 11px;
+    font-weight: 650;
+}
+
+/* Shared bar styling */
+.chart-bar {
+    display: block;
+    flex: 0 0 auto;
+
+    width: min(100%, 27px);
+    height: 50%;
+    min-height: 9px;
+
+    border-radius: 8px 8px 4px 4px;
+    background: linear-gradient(180deg, #b7a7ff, #8976df);
+
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+/* Monday: lavender */
+.bar-one {
+    height: 47%;
+    background: linear-gradient(180deg, #b7a7ff, #8976df);
+}
+
+/* Tuesday: green */
+.bar-two {
+    height: 76%;
+    background: linear-gradient(180deg, #a3dfc7, #65b99a);
+}
+
+/* Wednesday: orange */
+.bar-three {
+    height: 59%;
+    background: linear-gradient(180deg, #ffd19f, #f2a66d);
+}
+
+/* Thursday: lavender */
+.bar-four {
+    height: 94%;
+    background: linear-gradient(180deg, #b7a7ff, #8976df);
+}
+
+/* Friday: coral */
+.bar-five {
+    height: 67%;
+    background: linear-gradient(180deg, #f6b5c0, #e98f9f);
+}
+
+/* Saturday: green */
+.bar-six {
+    height: 42%;
+    background: linear-gradient(180deg, #a3dfc7, #65b99a);
+}
+
+/* Sunday: yellow */
+.bar-seven {
+    height: 55%;
+    background: linear-gradient(180deg, #ffe5a1, #edc95f);
+}
+
+/* Hovered or selected bar */
+.chart-column:hover .chart-bar,
+.chart-column.selected .chart-bar {
+    filter: brightness(0.96) saturate(1.15);
+    transform: scaleX(1.12);
+}
+
+/* Selected-day message */
+.chart-selection {
+    min-height: 22px;
+    margin-top: 10px;
+    color: var(--lavender-dark);
+    font-size: 12px;
+    font-weight: 750;
+}
+
+/* Chart disclaimer */
+.chart-note {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SECTION 19: PRODUCTIVITY SUMMARY PANEL
+   Change the summary icon, text, bullets and link here.
+   ========================================================= */
+.insight-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    min-width: 0;
+    min-height: 320px;
+    padding: 20px;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: #fffdf9;
+    box-shadow: var(--shadow);
+}
+
+/* Summary icon and label */
+.insight-topline {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 16px;
+}
+
+.insight-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 41px;
+    height: 41px;
+
+    border-radius: 13px;
+    background: var(--orange-soft);
+    color: #bd7134;
+    font-size: 20px;
+}
+
+.insight-topline span:last-child {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Summary heading */
+.insight-card h3 {
+    margin-bottom: 6px;
+    font-size: 19px;
+    font-weight: 850;
+}
+
+/* Summary description */
+.insight-description {
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Tips list */
+.insight-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+
+    padding: 0;
+    margin: 0 0 20px;
+    list-style: none;
+}
+
+.insight-list li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: var(--text);
+    font-size: 13px;
+}
+
+/* Colored tip bullets */
+.insight-dot {
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.insight-dot.green { background: var(--green); }
+.insight-dot.orange { background: var(--orange); }
+.insight-dot.coral { background: var(--coral); }
+
+/* Summary link */
+.insight-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+
+    margin-top: auto;
+    padding-top: 12px;
+
+    color: var(--lavender-dark);
+    font-size: 13px;
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   SECTION 20: FULL-WIDTH FOOTER
+   Change footer columns, colors, links and copyright here.
+   ========================================================= */
+.site-footer {
+    width: 100%;
+    padding: 28px clamp(24px, 4vw, 62px) 18px;
+
+    border-top: 1px solid var(--border);
+    background: var(--white);
+}
+
+/* Four footer columns */
+.footer-main {
+    display: grid;
+    grid-template-columns: minmax(250px, 1.7fr) repeat(3, minmax(120px, 0.8fr));
+    gap: 32px;
+
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.footer-about,
+.footer-column {
+    min-width: 0;
+}
+
+/* Footer logo */
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    width: fit-content;
+    margin-bottom: 12px;
+
+    color: var(--text-dark);
+    font-size: 22px;
+    font-weight: 850;
+}
+
+.footer-brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 12px;
+    background: var(--lavender);
+    color: var(--white);
+    font-size: 22px;
+}
+
+.footer-brand > span:last-child {
+    color: var(--lavender-dark);
+}
+
+/* Footer introduction */
+.footer-about h2 {
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 850;
+}
+
+.footer-about > p {
+    margin-bottom: 9px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* Footer tagline */
+.footer-about .footer-tagline {
+    color: var(--lavender-dark);
+    font-weight: 750;
+}
+
+/* Footer column headings */
+.footer-column h2 {
+    margin-bottom: 12px;
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 850;
+}
+
+/* Footer links */
+.footer-column > a {
+    display: block;
+    width: fit-content;
+    margin-bottom: 8px;
+
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.footer-column > a:hover {
+    color: var(--lavender-dark);
+}
+
+/* Copyright row */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    max-width: 1600px;
+    padding-top: 14px;
+    margin: 20px auto 0;
+
+    border-top: 1px solid var(--border);
+}
+
+.footer-bottom p {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SECTION 21: MOBILE SIDEBAR OVERLAY
+   ========================================================= */
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+
+    background: rgba(31, 25, 53, 0.42);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.sidebar-overlay.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   SECTION 22: TABLET AND SMALL DESKTOP LAYOUT
+   ========================================================= */
+@media (max-width: 1250px) {
+
+    :root {
+        --sidebar-width: 224px;
+    }
+
+    .topbar,
+    .dashboard-content {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .today-overview {
+        grid-template-columns: minmax(190px, 1.1fr) repeat(3, minmax(0, 1fr));
+        padding: 13px;
+    }
+
+    .today-metric {
+        grid-template-columns: 33px minmax(0, 1fr) 12px;
+        gap: 6px;
+        padding-right: 7px;
+        padding-left: 7px;
+    }
+
+    .metric-icon {
+        width: 33px;
+        height: 33px;
+    }
+
+    .header-search {
+        width: 205px;
+    }
+
+    .quick-grid,
+    .quick-access-grid {
+        gap: 11px;
+    }
+
+    .welcome-actions {
+        gap: 12px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+
+    .today-overview {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        row-gap: 12px;
+    }
+
+    .today-intro {
+        grid-column: 1 / -1;
+        padding: 2px 0 12px;
+        border-bottom: 1px solid #e3dcf5;
+    }
+
+    .today-metric:nth-of-type(2) {
+        border-left: 0;
+    }
+
+    .quick-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .quick-access-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .analytics-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .chart-card,
+    .insight-card {
+        min-height: 0;
+    }
+
+    .footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px;
+    }
+
+    .welcome-row {
+        align-items: flex-start;
+    }
+
+    .welcome-actions {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+}
+
+
+/* =========================================================
+   SECTION 23: MOBILE LAYOUT
+   ========================================================= */
+@media (max-width: 700px) {
+
+    .app-layout {
+        display: block;
+    }
+
+    /* Slide-out sidebar */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+
+        width: var(--sidebar-width);
+        height: 100vh;
+        height: 100dvh;
+
+        transform: translateX(-105%);
+        transition: transform 0.25s ease;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+        box-shadow: 12px 0 30px rgba(40, 30, 70, 0.13);
+    }
+
+    /* Show mobile menu */
+    .mobile-menu-button {
+        display: inline-flex;
+    }
+
+    .topbar {
+        min-height: 62px;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    .topbar-right {
+        margin-left: auto;
+        gap: 8px;
+    }
+
+    .header-search {
+        width: 160px;
+        min-width: 0;
+    }
+
+    .profile-details {
+        display: none;
+    }
+
+    .dashboard-content {
+        padding: 21px 16px 29px;
+    }
+
+    /* Greeting and actions stack on narrow screens */
+    .welcome-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .welcome-row h1 {
+        font-size: 28px;
+    }
+
+    .welcome-actions {
+        width: 100%;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .today-date {
+        white-space: normal;
+    }
+
+    /* Overview stacks vertically */
+    .today-overview {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 7px;
+    }
+
+    .today-intro {
+        grid-column: auto;
+    }
+
+    .today-metric,
+    .today-metric:nth-of-type(2) {
+        padding: 8px 3px;
+        border-top: 1px solid #e3dcf5;
+        border-left: 0;
+    }
+
+    /* Two-column feature and shortcut cards */
+    .quick-grid,
+    .quick-access-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .analytics-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .chart-card,
+    .insight-card {
+        padding: 15px;
+    }
+
+    .chart-bars {
+        gap: 5px;
+    }
+
+    .chart-bar {
+        width: min(100%, 23px);
+    }
+
+    /* Footer on mobile */
+    .footer-main {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 23px 17px;
+    }
+
+    .site-footer {
+        padding: 23px 18px 17px;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Very narrow phones */
+@media (max-width: 400px) {
+
+    .header-search {
+        width: 125px;
+    }
+
+    .dashboard-content {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .quick-grid,
+    .quick-access-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .section-heading h2 {
+        font-size: 19px;
+    }
+
+    .chart-card-heading {
+        flex-direction: column;
+    }
+
+    .footer-main {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+
+/* =========================================================
+   SECTION 24: ACCESSIBILITY
+   Keep keyboard focus visible and support reduced motion.
+   The search field has its own subtle focus style above.
+   ========================================================= */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--lavender-dark);
+    outline-offset: 3px;
+}
+
+/* Ensure search inputs do not get a browser blue rectangle */
+.header-search input:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Hide cards filtered out by the search */
+[hidden] {
+    display: none !important;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

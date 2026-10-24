@@ -1,0 +1,985 @@
+
+/* ======================================================
+   dayWise registration page
+   Sky blue + coral + blue clock + purple accents
+   ====================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --sky: #8edafa;
+    --sky-light: #c8efff;
+    --coral: #ff626d;
+    --blue: #3788bd;
+    --blue-dark: #194b7e;
+    --purple: #7655e8;
+    --text: #25223a;
+    --muted: #777b96;
+    --white: #ffffff;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+    background: var(--sky);
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+/* Main desktop page: fit the viewport */
+.register-page {
+    position: relative;
+    isolation: isolate;
+
+    width: 100%;
+    height: 100vh;
+    min-height: 650px;
+
+    padding: 28px clamp(35px, 7vw, 115px);
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(400px, 455px);
+    align-items: center;
+    gap: clamp(35px, 6vw, 95px);
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(255, 255, 255, 0.30),
+            transparent 28%
+        ),
+        linear-gradient(135deg, #b9eaff 0%, #8edafa 55%, #73c9ef 100%);
+}
+
+/* Login-page style grid */
+.background-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -4;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.16) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.16) 1px,
+            transparent 1px
+        );
+
+    background-size: 40px 40px;
+}
+
+/* Main coral circle behind the illustration and card */
+.coral-circle {
+    position: absolute;
+    z-index: -3;
+
+    width: min(47vw, 600px);
+    aspect-ratio: 1;
+
+    left: 25%;
+    top: 50%;
+    transform: translate(-10%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 32% 25%,
+            rgba(255, 255, 255, 0.17),
+            transparent 42%
+        ),
+        linear-gradient(145deg, #ff8589, #ff5969);
+
+    box-shadow: 0 28px 80px rgba(227, 68, 91, 0.17);
+}
+
+/* Decorative rings */
+.orbit {
+    position: absolute;
+    z-index: -2;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    border-radius: 50%;
+}
+
+.orbit-one {
+    width: 230px;
+    height: 230px;
+    top: -80px;
+    right: 5%;
+}
+
+.orbit-two {
+    width: 125px;
+    height: 125px;
+    left: 4%;
+    bottom: -35px;
+    border-color: rgba(255, 255, 255, 0.48);
+}
+
+/* Small decorative sparkles */
+.floating-spark {
+    position: absolute;
+    z-index: -1;
+    color: rgba(255, 255, 255, 0.9);
+    pointer-events: none;
+}
+
+.spark-one {
+    top: 13%;
+    left: 46%;
+    font-size: 32px;
+}
+
+.spark-two {
+    top: 22%;
+    right: 5%;
+    font-size: 24px;
+}
+
+.spark-three {
+    bottom: 12%;
+    left: 7%;
+    font-size: 25px;
+}
+
+/* ======================================================
+   LEFT SIDE: BRAND AND ILLUSTRATION
+   ====================================================== */
+
+.signup-visual {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 570px;
+    justify-self: center;
+}
+
+/* dayWise logo is above the Fresh Start label */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 27px;
+}
+
+.brand-icon {
+    width: 43px;
+    height: 43px;
+
+    display: grid;
+    place-items: center;
+
+    color: #ffffff;
+    background: linear-gradient(135deg, #9a7bff, #6945e1);
+    border-radius: 14px;
+
+    font-size: 28px;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(93, 62, 203, 0.22);
+}
+
+.brand-name {
+    color: #25223a;
+    font-size: 27px;
+    font-weight: 850;
+    letter-spacing: -0.9px;
+}
+
+.visual-caption {
+    display: table;
+    margin-bottom: 22px;
+    padding: 10px 15px;
+
+    color: #6040d0;
+    background: rgba(255, 255, 255, 0.67);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+}
+
+.caption-dot,
+.step-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: var(--purple);
+}
+
+.signup-visual h1 {
+    max-width: 590px;
+    margin-bottom: 18px;
+
+    color: #25223a;
+    font-size: clamp(38px, 3.8vw, 55px);
+    font-weight: 850;
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+.signup-visual h1 span {
+    display: block;
+    color: var(--purple);
+}
+
+.visual-description {
+    max-width: 465px;
+    color: #526d89;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Illustration area */
+.visual-art {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 270px;
+    margin-top: 7px;
+}
+
+.art-circle {
+    position: absolute;
+    width: 245px;
+    height: 245px;
+    top: 12px;
+    left: 105px;
+
+    border-radius: 50%;
+    background: linear-gradient(145deg, #a8e8ff, #63c4ed);
+    box-shadow: 0 20px 50px rgba(28, 103, 154, 0.12);
+}
+
+/* Weekly planner card */
+.art-calendar {
+    position: absolute;
+    z-index: 2;
+
+    width: 220px;
+    min-height: 210px;
+    top: 27px;
+    left: 35px;
+
+    padding: 18px;
+
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 21px;
+
+    box-shadow: 0 22px 45px rgba(32, 82, 126, 0.18);
+    transform: rotate(-5deg);
+}
+
+.calendar-top {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.calendar-top span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #d5d5e7;
+}
+
+.calendar-top span:first-child {
+    background: #ff7c89;
+}
+
+.calendar-title {
+    margin-bottom: 13px;
+    color: #292741;
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 0.8px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+}
+
+.calendar-grid span {
+    min-height: 26px;
+    display: grid;
+    place-items: center;
+
+    color: #aaa9c0;
+    background: #f0f1fa;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.calendar-grid .day-label {
+    min-height: 18px;
+    color: #89869e;
+    background: transparent;
+    font-size: 10px;
+}
+
+.calendar-grid .completed {
+    color: #8b78de;
+}
+
+.calendar-grid .active-day {
+    color: #ffffff;
+    background: var(--purple);
+    box-shadow: 0 5px 12px rgba(118, 85, 232, 0.25);
+}
+
+.calendar-progress {
+    height: 7px;
+    margin-top: 17px;
+    background: #eae8f8;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.calendar-progress span {
+    display: block;
+    width: 72%;
+    height: 100%;
+    background: linear-gradient(90deg, #8c72f3, #43bfe7);
+    border-radius: inherit;
+}
+
+.calendar-note {
+    margin-top: 9px;
+    color: #85839b;
+    font-size: 10px;
+}
+
+/* Blue clock */
+.art-clock {
+    position: absolute;
+    z-index: 3;
+
+    width: 84px;
+    height: 84px;
+    top: 28px;
+    right: 30px;
+
+    border: 7px solid #ffffff;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #8fe0ff, #38b5e6);
+
+    box-shadow: 0 14px 28px rgba(35, 101, 149, 0.2);
+}
+
+.clock-hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+
+    width: 3px;
+    border-radius: 4px;
+    background: #ffffff;
+    transform-origin: bottom center;
+}
+
+.hour-hand {
+    height: 20px;
+    transform: translateX(-50%) rotate(-35deg);
+}
+
+.minute-hand {
+    height: 27px;
+    transform: translateX(-50%) rotate(35deg);
+}
+
+.clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ffffff;
+    transform: translate(-50%, -50%);
+}
+
+/* Checkmark badge */
+.art-check {
+    position: absolute;
+    z-index: 4;
+    right: 55px;
+    bottom: 20px;
+
+    width: 52px;
+    height: 52px;
+
+    display: grid;
+    place-items: center;
+
+    color: #ffffff;
+    background: linear-gradient(145deg, #8e75f4, #6342d7);
+    border: 4px solid #ffffff;
+    border-radius: 17px;
+
+    font-size: 27px;
+    font-weight: 800;
+    transform: rotate(8deg);
+    box-shadow: 0 12px 24px rgba(93, 68, 202, 0.23);
+}
+
+/* Small progress status card */
+.mini-progress {
+    position: absolute;
+    z-index: 4;
+    right: 0;
+    bottom: 13px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 15px;
+
+    color: #ffffff;
+    background: linear-gradient(135deg, #3988bb, #246296);
+    border: 1px solid rgba(255, 255, 255, 0.48);
+    border-radius: 15px;
+
+    box-shadow: 0 12px 25px rgba(28, 80, 127, 0.20);
+    transform: translateY(14px);
+}
+
+.mini-progress-icon {
+    width: 31px;
+    height: 31px;
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(255, 255, 255, 0.17);
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.mini-progress strong,
+.mini-progress small {
+    display: block;
+}
+
+.mini-progress strong {
+    font-size: 10px;
+}
+
+.mini-progress small {
+    margin-top: 4px;
+    color: #e2f5ff;
+    font-size: 9px;
+}
+
+.art-sparkle {
+    position: absolute;
+    right: 2px;
+    bottom: 100px;
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.visual-footer {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-top: -2px;
+    color: #416985;
+    font-size: 11px;
+}
+
+.footer-line {
+    width: 34px;
+    height: 2px;
+    background: var(--purple);
+    border-radius: 4px;
+}
+
+/* ======================================================
+   RIGHT SIDE: REGISTRATION FORM
+   ====================================================== */
+
+.register-card {
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
+    max-width: 455px;
+    justify-self: center;
+
+    padding: 25px 30px 18px;
+
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    border-radius: 25px;
+
+    box-shadow:
+        0 25px 65px rgba(31, 74, 119, 0.19),
+        0 6px 20px rgba(34, 61, 110, 0.06);
+
+    animation: card-appear 0.45s ease-out both;
+}
+
+@keyframes card-appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-heading {
+    margin-bottom: 18px;
+}
+
+.form-symbol {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 12px;
+
+    color: #ffffff;
+    background: linear-gradient(135deg, #9276ff, #6542df);
+    border-radius: 13px;
+
+    font-size: 20px;
+    box-shadow: 0 7px 17px rgba(118, 85, 232, 0.22);
+}
+
+.step-label {
+    margin-bottom: 8px;
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: 0.65px;
+}
+
+.form-heading h2 {
+    margin-bottom: 7px;
+    color: #25223a;
+    font-size: 27px;
+    font-weight: 850;
+    letter-spacing: -0.7px;
+}
+
+.form-heading p {
+    color: #858197;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.form-message {
+    margin-bottom: 13px;
+    padding: 10px 12px;
+
+    color: #a52d45;
+    background: #fff0f2;
+    border: 1px solid #ffd8df;
+    border-radius: 10px;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Form fields */
+.form-group {
+    margin-bottom: 13px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #343047;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.input-shell {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    width: 100%;
+    min-height: 43px;
+    padding: 0 12px;
+
+    background: #fbfaff;
+    border: 1px solid #e3e0ef;
+    border-radius: 11px;
+
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.input-shell:focus-within {
+    background: #ffffff;
+    border-color: #8a70ef;
+    box-shadow: 0 0 0 3px rgba(118, 85, 232, 0.10);
+}
+
+.input-icon {
+    flex-shrink: 0;
+    width: 17px;
+    color: #8b80bd;
+    font-size: 15px;
+    text-align: center;
+}
+
+.input-shell input {
+    min-width: 0;
+    width: 100%;
+    height: 41px;
+
+    color: #29263d;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 12px;
+}
+
+.input-shell input::placeholder {
+    color: #aaa6ba;
+}
+
+.password-toggle {
+    flex-shrink: 0;
+    padding: 5px 1px;
+
+    color: var(--purple);
+    background: transparent;
+    border: none;
+    font-size: 10px;
+    font-weight: 850;
+    cursor: pointer;
+}
+
+.password-toggle:hover {
+    color: #4f32c5;
+}
+
+.field-hint {
+    display: block;
+    margin-top: 5px;
+    color: #8c88a0;
+    font-size: 9px;
+}
+
+/* Terms */
+.terms-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+
+    margin: 5px 0 15px;
+
+    color: #77748b;
+    font-size: 10px;
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.terms-row input {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    accent-color: var(--purple);
+    cursor: pointer;
+}
+
+/* Create account button */
+.create-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 17px;
+
+    color: #ffffff;
+    background: linear-gradient(110deg, #8a6bf0, #6845dc);
+    border: none;
+    border-radius: 12px;
+
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+
+    box-shadow: 0 10px 22px rgba(118, 85, 232, 0.24);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+}
+
+.create-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+    box-shadow: 0 14px 26px rgba(118, 85, 232, 0.30);
+}
+
+.create-button:active {
+    transform: translateY(0);
+}
+
+.button-arrow {
+    font-size: 18px;
+}
+
+/* Sign-in link remains inside the card */
+.signin-prompt {
+    margin-top: 14px;
+    color: #858197;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.signin-prompt a {
+    color: var(--purple);
+    font-weight: 850;
+}
+
+.signin-prompt a:hover {
+    text-decoration: underline;
+}
+
+.form-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    margin-top: 13px;
+    padding-top: 11px;
+
+    color: #9692a8;
+    border-top: 1px solid #efedf5;
+
+    font-size: 9px;
+    text-align: center;
+}
+
+.bottom-check {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: #6845dc;
+    background: #eee9ff;
+    border-radius: 50%;
+
+    font-size: 10px;
+    font-weight: 850;
+}
+
+/* ======================================================
+   RESPONSIVE
+   On small screens, scrolling is enabled to keep the form
+   usable rather than clipping fields.
+   ====================================================== */
+
+@media (max-width: 1050px) {
+    .register-page {
+        grid-template-columns: minmax(0, 1fr) minmax(370px, 420px);
+        gap: 30px;
+        padding: 24px 4%;
+    }
+
+    .signup-visual h1 {
+        font-size: 42px;
+    }
+
+    .visual-art {
+        transform: scale(0.86);
+        transform-origin: left top;
+        margin-bottom: -35px;
+    }
+
+    .coral-circle {
+        width: 480px;
+        left: 22%;
+    }
+
+    .register-card {
+        padding: 23px 24px 17px;
+    }
+}
+
+@media (max-width: 800px) {
+    body {
+        overflow: auto;
+    }
+
+    .register-page {
+        height: auto;
+        min-height: 100vh;
+        overflow: hidden;
+
+        grid-template-columns: minmax(0, 480px);
+        justify-content: center;
+        gap: 28px;
+        padding: 30px 18px 40px;
+    }
+
+    .register-card {
+        grid-row: 1;
+        width: 100%;
+    }
+
+    .signup-visual {
+        grid-row: 2;
+        text-align: center;
+    }
+
+    .brand {
+        margin-bottom: 20px;
+    }
+
+    .visual-caption {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .signup-visual h1 {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 38px;
+    }
+
+    .visual-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .visual-art {
+        margin: 10px auto 0;
+        transform: scale(0.85);
+        transform-origin: top center;
+        height: 240px;
+    }
+
+    .visual-footer {
+        justify-content: center;
+    }
+
+    .coral-circle {
+        width: 360px;
+        left: 50%;
+        top: 42%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (max-width: 480px) {
+    .register-page {
+        padding: 22px 13px 30px;
+    }
+
+    .register-card {
+        padding: 23px 19px 18px;
+        border-radius: 21px;
+    }
+
+    .form-heading h2 {
+        font-size: 24px;
+    }
+
+    .signup-visual h1 {
+        font-size: 33px;
+        letter-spacing: -1px;
+    }
+
+    .visual-art {
+        margin-left: -25px;
+        transform: scale(0.75);
+        transform-origin: top center;
+        height: 220px;
+    }
+}
+
+@media (max-height: 740px) and (min-width: 801px) {
+    .register-page {
+        min-height: 600px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        gap: 30px;
+    }
+
+    .register-card {
+        padding-top: 18px;
+        padding-bottom: 13px;
+    }
+
+    .form-heading {
+        margin-bottom: 12px;
+    }
+
+    .form-symbol {
+        display: none;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .visual-art {
+        height: 220px;
+        transform: scale(0.85);
+        transform-origin: left top;
+        margin-bottom: -30px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

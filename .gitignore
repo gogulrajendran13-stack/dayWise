@@ -1,0 +1,18 @@
+
+# Maven build output
+target/
+
+# Eclipse workspace metadata
+.metadata/
+.settings/
+.project
+.classpath
+
+# Local secrets and database configuration
+.env
+.env.*
+src/main/resources/db.properties
+
+# Operating system files
+.DS_Store
+Thumbs.db
